@@ -23,7 +23,7 @@ describe('Cadastro de usuário', ()=>{
             .should('have.text', 'O campo e-mail deve ser prenchido corretamente')
     });
 
-    it.only('Validar campo e-mail inválido', () => {
+    it('Validar campo e-mail inválido', () => {
         cy.visit('/')
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
@@ -38,8 +38,18 @@ describe('Cadastro de usuário', ()=>{
             
     });
 
-    it('Validar campo senha vazio', () => {
-        
+    it.only('Validar campo senha vazio', () => {
+        cy.visit('/')
+        cy.get('#top_header  li:nth-child(2) > a')
+            .click()
+        cy.get('#user')
+            .type('Ricardo Oliveira')
+        cy.get('#email')
+            .type('ricardooliveira.qa@gmail.com')
+        cy.get('#btnRegister')
+            .click()
+            cy.get('#errorMessageFirstName')
+            .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
     });
 
     it('Validar campo senha inválido', () => {
