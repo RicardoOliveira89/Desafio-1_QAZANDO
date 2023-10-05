@@ -68,7 +68,7 @@ describe('Cadastro de usuário', ()=>{
             .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
     });
 
-    it.only('Cadastro realizado com sucesso', () => {
+    it('Cadastro realizado com sucesso', () => {
         cy.visit('/')
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
