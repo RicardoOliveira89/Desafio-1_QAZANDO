@@ -38,7 +38,7 @@ describe('Cadastro de usuário', ()=>{
             
     });
 
-    it.only('Validar campo senha vazio', () => {
+    it('Validar campo senha vazio', () => {
         cy.visit('/')
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
@@ -48,12 +48,24 @@ describe('Cadastro de usuário', ()=>{
             .type('ricardooliveira.qa@gmail.com')
         cy.get('#btnRegister')
             .click()
-            cy.get('#errorMessageFirstName')
+        cy.get('#errorMessageFirstName')
             .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
     });
 
-    it('Validar campo senha inválido', () => {
-        
+    it.only('Validar campo senha inválido', () => {
+        cy.visit('/')
+        cy.get('#top_header  li:nth-child(2) > a')
+            .click()
+        cy.get('#user')
+            .type('Ricardo Oliveira')
+        cy.get('#email')
+            .type('ricardooliveira.qa@gmail.com')
+        cy.get('#password')
+            .type('1234')
+        cy.get('#btnRegister')
+            .click()
+        cy.get('#errorMessageFirstName')
+            .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
     });
 
     it('Cadastro realizado com sucesso', () => {
