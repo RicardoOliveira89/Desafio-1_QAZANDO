@@ -1,5 +1,9 @@
 /// <reference types="cypress" />
 
+const user_name = 'Ricardo Oliveira'
+const user_email = 'ricardooliveira.qa@gmail.com'
+const user_password = '1234567'
+
 describe('Cadastro de usuário', ()=>{
     it('Validar campo nome vazio', () => {
         cy.visit('/')
@@ -16,7 +20,7 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type('Ricardo Oliveira')
+            .type(user_name)
         cy.get('#btnRegister')
             .click()
         cy.get('#errorMessageFirstName')
@@ -28,7 +32,7 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type('Ricardo Oliveira')
+            .type(user_name)
         cy.get('#email')
             .type('e-mail inválido')
         cy.get('#btnRegister')
@@ -43,9 +47,9 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type('Ricardo Oliveira')
+            .type(user_name)
         cy.get('#email')
-            .type('ricardooliveira.qa@gmail.com')
+            .type(user_email)
         cy.get('#btnRegister')
             .click()
         cy.get('#errorMessageFirstName')
@@ -57,9 +61,9 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type('Ricardo Oliveira')
+            .type(user_name)
         cy.get('#email')
-            .type('ricardooliveira.qa@gmail.com')
+            .type(user_email)
         cy.get('#password')
             .type('1234')
         cy.get('#btnRegister')
@@ -73,11 +77,11 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type('Ricardo Oliveira')
+            .type(user_name)
         cy.get('#email')
-            .type('ricardooliveira.qa@gmail.com')
+            .type(user_email)
         cy.get('#password')
-            .type('1234567')
+            .type(user_password)
         cy.get('#btnRegister')
             .click()
         cy.get('#swal2-title')
