@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
 
-const user_name = 'Ricardo Oliveira'
-const user_email = 'ricardooliveira.qa@gmail.com'
-const user_password = '1234567'
+const user_data_invalid = require ('../fixtures/desafio_invalid_data.json')
+const user_data_valid = require('../fixtures/desafio_valid_data.json')
 
 describe('Cadastro de usuário', ()=>{
     it('Validar campo nome vazio', () => {
@@ -20,7 +19,7 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type(user_name)
+            .type(user_data_valid.name)
         cy.get('#btnRegister')
             .click()
         cy.get('#errorMessageFirstName')
@@ -32,9 +31,9 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type(user_name)
+            .type(user_data_valid.name)
         cy.get('#email')
-            .type('e-mail inválido')
+            .type(user_data_invalid.email)
         cy.get('#btnRegister')
             .click()
         cy.get('#errorMessageFirstName')
@@ -47,9 +46,9 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type(user_name)
+            .type(user_data_valid.name)
         cy.get('#email')
-            .type(user_email)
+            .type(user_data_valid.email)
         cy.get('#btnRegister')
             .click()
         cy.get('#errorMessageFirstName')
@@ -61,11 +60,11 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type(user_name)
+            .type(user_data_valid.name)
         cy.get('#email')
-            .type(user_email)
+            .type(user_data_valid.email)
         cy.get('#password')
-            .type('1234')
+            .type(user_data_invalid.password)
         cy.get('#btnRegister')
             .click()
         cy.get('#errorMessageFirstName')
@@ -77,11 +76,11 @@ describe('Cadastro de usuário', ()=>{
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type(user_name)
+            .type(user_data_valid.name)
         cy.get('#email')
-            .type(user_email)
+            .type(user_data_valid.email)
         cy.get('#password')
-            .type(user_password)
+            .type(user_data_valid.password)
         cy.get('#btnRegister')
             .click()
         cy.get('#swal2-title')
