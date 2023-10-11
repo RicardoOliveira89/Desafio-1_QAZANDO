@@ -6,10 +6,14 @@ const user_data_valid = require('../fixtures/desafio_valid_data.json')
 const nome = faker.name.fullName()
 
 describe('Cadastro de usuário', ()=>{
-    it('Validar campo nome vazio', () => {
+
+    beforeEach('Acessando a página de cadastro', () => {
         cy.visit('/')
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
+    })
+    it('Validar campo nome vazio', () => {
+        
         cy.get('#btnRegister')
             .click()
         cy.get('#errorMessageFirstName')
@@ -17,9 +21,6 @@ describe('Cadastro de usuário', ()=>{
     });
 
     it('Validar campo e-mail vazio', () => {
-        cy.visit('/')
-        cy.get('#top_header  li:nth-child(2) > a')
-            .click()
         cy.get('#user')
             .type(user_data_valid.name)
         cy.get('#btnRegister')
@@ -29,9 +30,6 @@ describe('Cadastro de usuário', ()=>{
     });
 
     it('Validar campo e-mail inválido', () => {
-        cy.visit('/')
-        cy.get('#top_header  li:nth-child(2) > a')
-            .click()
         cy.get('#user')
             .type(user_data_valid.name)
         cy.get('#email')
@@ -44,9 +42,6 @@ describe('Cadastro de usuário', ()=>{
     });
 
     it('Validar campo senha vazio', () => {
-        cy.visit('/')
-        cy.get('#top_header  li:nth-child(2) > a')
-            .click()
         cy.get('#user')
             .type(user_data_valid.name)
         cy.get('#email')
@@ -58,9 +53,6 @@ describe('Cadastro de usuário', ()=>{
     });
 
     it('Validar campo senha inválido', () => {
-        cy.visit('/')
-        cy.get('#top_header  li:nth-child(2) > a')
-            .click()
         cy.get('#user')
             .type(user_data_valid.name)
         cy.get('#email')
@@ -73,12 +65,10 @@ describe('Cadastro de usuário', ()=>{
             .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
     });
 
-    it.only('Cadastro realizado com sucesso', () => {
-        cy.visit('/')
-        cy.get('#top_header  li:nth-child(2) > a')
-            .click()
+    it('Cadastro realizado com sucesso', () => {
+        const name = faker.name.fullName()
         cy.get('#user')
-            .type(nome)
+            .type(name)
         cy.get('#email')
             .type(user_data_valid.email)
         cy.get('#password')
