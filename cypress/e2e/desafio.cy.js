@@ -1,7 +1,9 @@
 /// <reference types="cypress" />
+import {faker} from '@faker-js/faker'
 
 const user_data_invalid = require ('../fixtures/desafio_invalid_data.json')
 const user_data_valid = require('../fixtures/desafio_valid_data.json')
+const nome = faker.name.fullName()
 
 describe('Cadastro de usuário', ()=>{
     it('Validar campo nome vazio', () => {
@@ -71,12 +73,12 @@ describe('Cadastro de usuário', ()=>{
             .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
     });
 
-    it('Cadastro realizado com sucesso', () => {
+    it.only('Cadastro realizado com sucesso', () => {
         cy.visit('/')
         cy.get('#top_header  li:nth-child(2) > a')
             .click()
         cy.get('#user')
-            .type(user_data_valid.name)
+            .type(nome)
         cy.get('#email')
             .type(user_data_valid.email)
         cy.get('#password')
