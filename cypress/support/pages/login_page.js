@@ -3,12 +3,14 @@
 //Elements
 const elements = {
     messages: {
-        messageSucess: '#swal2-title'
+        sucessMessage: '#swal2-title'
     }
 }
 
 //Methods/Functions
-Cypress.Commands.add('checkRegisterSucess', (message) => {
-    cy.get(elements.messages.messageSucess)
-        .should('have.text', message)
-})
+export default{
+    messageSucess(message){
+        cy.get(elements.messages.sucessMessage)
+            .should('have.text', message)
+    }
+}

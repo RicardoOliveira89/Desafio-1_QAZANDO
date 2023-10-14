@@ -15,31 +15,33 @@ const elements = {
     }
 }
 
-
 //Methods/Functions
-Cypress.Commands.add('saveRegister', () => {
-    cy.get(elements.buttons.register)
+export default{
+    saveRegister(){
+        cy.get(elements.buttons.register)
         .click()
-})
+    },
 
-Cypress.Commands.add('fillName', (name) => {
-    cy.get(elements.fields.name)
+    fillName(name){
+        cy.get(elements.fields.name)
         .type(name)
-})
+    },
 
-Cypress.Commands.add('fillEmail', (email) => {
-    cy.get(elements.fields.email)
+    fillEmail(email){
+        cy.get(elements.fields.email)
         .should('be.visible')
         .type(email)
-})
+    },
 
-Cypress.Commands.add('fillPassword', (password) => {
-    cy.get(elements.fields.password)
+    fillPassword(password){
+        cy.get(elements.fields.password)
         .should('be.visible')
         .type(password)
-})
+    },
 
-Cypress.Commands.add('checkMessage', (message) => {
-    cy.get(elements.messages.errorMessage)
+    checkMessage(message){
+        cy.get(elements.messages.errorMessage)
         .should('have.text', message)
-})
+    }
+
+}
