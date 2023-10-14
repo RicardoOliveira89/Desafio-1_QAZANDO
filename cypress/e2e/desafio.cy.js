@@ -45,7 +45,6 @@ describe('Cadastro de usuário', ()=>{
         cy.fillEmail(user_data_valid.email)
         cy.fillPassword(user_data_valid.password)
         cy.saveRegister()
-        cy.get('#swal2-title')
-            .should('have.text', 'Cadastro realizado!')
+        cy.checkRegisterSucess('Cadastro realizado!')
     });
 })
