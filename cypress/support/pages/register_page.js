@@ -1,28 +1,45 @@
 /// <reference types="cypress" />
 
+// Elements
+const elements = {
+    buttons:{
+        register: '#btnRegister'
+    },
+    fields:{
+        name: '#user',
+        email: '#email',
+        password: '#password'
+    },
+    messages:{
+        errorMessage: '#errorMessageFirstName' 
+    }
+}
+
+
+//Methods/Functions
 Cypress.Commands.add('saveRegister', () => {
-    cy.get('#btnRegister')
+    cy.get(elements.buttons.register)
         .click()
 })
 
 Cypress.Commands.add('fillName', (name) => {
-    cy.get('#user')
+    cy.get(elements.fields.name)
         .type(name)
 })
 
 Cypress.Commands.add('fillEmail', (email) => {
-    cy.get('#email')
+    cy.get(elements.fields.email)
         .should('be.visible')
         .type(email)
 })
 
 Cypress.Commands.add('fillPassword', (password) => {
-    cy.get('#password')
+    cy.get(elements.fields.password)
         .should('be.visible')
         .type(password)
 })
 
 Cypress.Commands.add('checkMessage', (message) => {
-    cy.get('#errorMessageFirstName')
+    cy.get(elements.messages.errorMessage)
         .should('have.text', message)
 })
