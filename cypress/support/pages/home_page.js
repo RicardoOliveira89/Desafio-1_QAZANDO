@@ -1,12 +1,20 @@
 /// <reference types="cypress" />
 
+//Elements
+const elements = {
+    buttons: {
+        register: '#top_header  li:nth-child(2) > a'
+    },
+    fields: {
+        name: '#user'
+    }
+}
 export default{
     acessRegisterPage(){
         cy.visit('/')
-            .get('.header-logo')
-        cy.get('#top_header  li:nth-child(2) > a')
+        cy.get(elements.buttons.register)
             .click()
-        cy.get('#user')
+        cy.get(elements.fields.name)
             .should('be.visible')
     }
 }

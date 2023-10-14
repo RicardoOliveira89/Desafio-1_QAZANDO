@@ -21,27 +21,22 @@ export default{
         cy.get(elements.buttons.register)
         .click()
     },
-
     fillName(name){
         cy.get(elements.fields.name)
         .type(name)
     },
-
     fillEmail(email){
         cy.get(elements.fields.email)
         .should('be.visible')
         .type(email)
     },
-
     fillPassword(password){
         cy.get(elements.fields.password)
         .should('be.visible')
         .type(password)
     },
-
     checkMessage(message){
         cy.get(elements.messages.errorMessage)
         .should('have.text', message)
     }
-
 }
