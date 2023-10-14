@@ -11,61 +11,39 @@ describe('Cadastro de usuário', ()=>{
         cy.acessRegisterPage()
     })
     it('Validar campo nome vazio', () => {
-        
         cy.saveRegister()
-        cy.get('#errorMessageFirstName')
-            .should('have.text', 'O campo nome deve ser prenchido')
+        cy.checkMessage('O campo nome deve ser prenchido')
     });
-
     it('Validar campo e-mail vazio', () => {
-        cy.get('#user')
-            .type(user_data_valid.name)
+        cy.fillName(user_data_valid.name)
         cy.saveRegister()
-        cy.get('#errorMessageFirstName')
-            .should('have.text', 'O campo e-mail deve ser prenchido corretamente')
+        cy.checkMessage('O campo e-mail deve ser prenchido corretamente')
     });
-
     it('Validar campo e-mail inválido', () => {
-        cy.get('#user')
-            .type(user_data_valid.name)
-        cy.get('#email')
-            .type(user_data_invalid.email)
+        cy.fillName(user_data_valid.name)
+        cy.fillEmail(user_data_invalid.email)
         cy.saveRegister()
-        cy.get('#errorMessageFirstName')
-            .should('have.text', 'O campo e-mail deve ser prenchido corretamente')
+        cy.checkMessage('O campo e-mail deve ser prenchido corretamente')
             
     });
-
     it('Validar campo senha vazio', () => {
-        cy.get('#user')
-            .type(user_data_valid.name)
-        cy.get('#email')
-            .type(user_data_valid.email)
+        cy.fillName(user_data_valid.name)
+        cy.fillEmail(user_data_valid.email)
         cy.saveRegister()
-        cy.get('#errorMessageFirstName')
-            .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
+        cy.checkMessage('O campo senha deve ter pelo menos 6 dígitos')
     });
-
     it('Validar campo senha inválido', () => {
-        cy.get('#user')
-            .type(user_data_valid.name)
-        cy.get('#email')
-            .type(user_data_valid.email)
-        cy.get('#password')
-            .type(user_data_invalid.password)
+        cy.fillName(user_data_valid.name)
+        cy.fillEmail(user_data_valid.email)
+        cy.fillPassword(user_data_invalid.password)
         cy.saveRegister()
-        cy.get('#errorMessageFirstName')
-            .should('have.text', 'O campo senha deve ter pelo menos 6 dígitos')
+        cy.checkMessage('O campo senha deve ter pelo menos 6 dígitos')
     });
-
     it('Cadastro realizado com sucesso', () => {
-        const name = faker.name.fullName()
-        cy.get('#user')
-            .type(name)
-        cy.get('#email')
-            .type(user_data_valid.email)
-        cy.get('#password')
-            .type(user_data_valid.password)
+        const name = faker.person.fullName()
+        cy.fillName(name)
+        cy.fillEmail(user_data_valid.email)
+        cy.fillPassword(user_data_valid.password)
         cy.saveRegister()
         cy.get('#swal2-title')
             .should('have.text', 'Cadastro realizado!')
